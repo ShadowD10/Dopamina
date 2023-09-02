@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 1 set. 2023, 15:17:40
-    Author     : LAB-USR-SJL275-B0205
+    Author     : Denni Medina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
