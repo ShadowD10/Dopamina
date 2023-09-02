@@ -1,0 +1,48 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 1 set. 2023, 16:10:50
+    Author     : LAB-USR-SJL275-B0205
+*/
+
+/* Color Theme Swatches in Hex */
+
+:root{
+    --color-1 : #C7FFED;
+    --color-2 : #D8FFDB;
+    --color-encabezado : #008F8C; 
+    --color-3 : #015958;
+    --color-pie : #08080B;
+}
+
+
+.Teal-and-Mint-1-hex { color: #C7FFED; }
+.Teal-and-Mint-2-hex { color: #D8FFDB; }
+.Teal-and-Mint-3-hex { color: #008F8C; }
+.Teal-and-Mint-4-hex { color: #015958; }
+.Teal-and-Mint-5-hex { color: #023535; }
+
+
+/* Color Theme Swatches in RGBA */
+.Teal-and-Mint-1-rgba { color: rgba(199, 255, 237, 1); }
+.Teal-and-Mint-2-rgba { color: rgba(216, 255, 219, 1); }
+.Teal-and-Mint-3-rgba { color: rgba(0, 143, 140, 1); }
+.Teal-and-Mint-4-rgba { color: rgba(1, 89, 88, 1); }
+.Teal-and-Mint-5-rgba { color: rgba(2, 53, 53, 1); }
+
+/* CLASES */
+
+.fondo-encabezado {
+    background: var(--color-encabezado);
+}
+
+.fondo-footer {
+    background: var(--color-pie);
+}
+
+.fondo-general{
+}
+
+
