@@ -19,13 +19,18 @@
                 <form action="#">
                     <div class="usuario-detalles">
                         <div class="input-box">
-                            <span class="detalles">Paciente</span>
-                            <select required>
-                                <option value="" disabled selected>Selecciona el Paciente...</option>
-                                <option value="">Paciente 1</option>
-                                <option value="">Paciente 2</option>
-                                <option value="">Paciente 3</option>
-                            </select>
+                            <span class="detalles">Nombre del Paciente</span>
+                            <input type="text" placeholder="Ingrese Nombre del Paciente"/> 
+                        </div>
+                        
+                        <div class="input-box">
+                            <span class="detalles">Parentezco con el Paciente</span>
+                            <input type="text" placeholder="Ingresar Parentezco"/> 
+                        </div>
+                        
+                        <div class="input-box">
+                            <span class="detalles">Edad del Paciente</span>
+                            <input type="text" placeholder="Ingresar Edad"/> 
                         </div>
 
                         <div class="input-box">
@@ -66,7 +71,7 @@
                         <a href="resumenTerapia.jsp">Registrar Cita</a>
                     </div>
 
-                    <p class="formulario_parrafo_final">Recuerda Iniciar Sesión para registrar Pacientes.</p>
+                    <p class="formulario_parrafo_final">Recuerda Iniciar Sesión para empezar a registrar las Citas.</p>
                 </form>
             </div>
         </div>
