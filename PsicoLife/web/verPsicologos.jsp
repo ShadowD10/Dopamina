@@ -18,9 +18,10 @@
         <!-- ADMINISTRADOR VER DOCTORES-->
 
         <section class="editar_perfil contenedor">
-            <div class="panel">
+            <div class="panel panel_administrador">
                 <div class="panel_contenido">
                     <a href="#" class="text-center fs-2">PSICO-LIFE</a>
+                    <a href="verUsuarios.jsp">Ver Usuarios</a>
                     <a href="verPacientes.jsp">Ver Pacientes</a>
                     <a href="verCitas.jsp">Ver Citas</a>
                     <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
