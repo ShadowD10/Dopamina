@@ -11,21 +11,22 @@ public class Contacto {
     private int id;
     private String nombre;
     private String correo;
-    private String numCelular;
     private String mensaje;
+    private String numCelular;
     private Timestamp fechaHora;
 
     public Contacto() {
     }
 
-    public Contacto(int id, String nombre, String correo, String numCelular, String mensaje, Timestamp fechaHora) {
+    public Contacto(int id, String nombre, String correo, String mensaje, String numCelular, Timestamp fechaHora) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        this.numCelular = numCelular;
         this.mensaje = mensaje;
+        this.numCelular = numCelular;
         this.fechaHora = fechaHora;
     }
+
 
 
     public int getId() {
@@ -51,21 +52,21 @@ public class Contacto {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    public String getNumCelular() {
-        return numCelular;
-    }
 
-    public void setNumCelular(String numCelular) {
-        this.numCelular = numCelular;
-    }
-    
     public String getMensaje() {
         return mensaje;
     }
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getNumCelular() {
+        return numCelular;
+    }
+
+    public void setNumCelular(String numCelular) {
+        this.numCelular = numCelular;
     }
 
     public Timestamp getFechaHora() {
