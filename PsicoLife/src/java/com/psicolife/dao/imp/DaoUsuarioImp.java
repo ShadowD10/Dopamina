@@ -31,7 +31,7 @@ public class DaoUsuarioImp implements DaoUsuario {
         List<Usuario> usuarios = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña")
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
                 .append("FROM USUARIO");
         
         try(Connection cn = conn.getConexion()){
@@ -58,15 +58,16 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     @SuppressWarnings("null")
     public Usuario usuarioGet(Integer id) {
-        Usuario user = new Usuario();        
+        Usuario user = null;    
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña")
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
                 .append("FROM USUARIO WHERE ID_USUARIO = ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                user = new Usuario(); 
                 user.setIdUsuario(rs.getInt(1));
                 user.setUsername(rs.getString(2));
                 user.setCorreo(rs.getString(3));
@@ -87,7 +88,7 @@ public class DaoUsuarioImp implements DaoUsuario {
         //INSERT INTO Usuario VALUES (usuario_seq.NEXTVAL,?,?,?,?)
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Usuario (username, correo, num_celular, edad, contraseña)")
+        sql.append("INSERT INTO Usuario (username, correo, num_celular, edad, contraseña) ")
                 .append("VALUES (?, ?, ?, ?, ?)");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -110,8 +111,8 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public String usuarioUpd(Usuario usuario) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?, contraseña = ?")
-                .append("WHERE ID_USUARIO=?");
+        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?, contraseña = ? ")
+                .append("WHERE id_usuario=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, usuario.getUsername());
@@ -159,7 +160,7 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public Usuario UsuarioLog(Usuario usuario) {        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña")
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
                 .append("FROM USUARIO WHERE CORREO = ? AND CONTRASEÑA= ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
