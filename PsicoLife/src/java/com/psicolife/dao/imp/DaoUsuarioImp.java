@@ -8,6 +8,7 @@ import com.psicolife.dao.interfaces.DaoUsuario;
 import com.psicolife.model.Usuario;
 import com.psicolife.util.Conexion;
 import java.util.List;
+import org.apache.tomcat.dbcp.dbcp2.PoolingConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,8 @@ public class DaoUsuarioImp implements DaoUsuario {
         List<Usuario> usuarios = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
-                .append("FROM USUARIO");
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad")
+                .append(" FROM USUARIO");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -45,7 +46,6 @@ public class DaoUsuarioImp implements DaoUsuario {
                 user.setCorreo(rs.getString(3));
                 user.setNumCelular(rs.getString(4));
                 user.setEdad(rs.getInt(5));
-                user.setContraseña(rs.getString(6));
                 usuarios.add(user);
             }            
         } catch (SQLException ex) {
@@ -58,22 +58,20 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     @SuppressWarnings("null")
     public Usuario usuarioGet(Integer id) {
-        Usuario user = null;    
+        Usuario user = new Usuario();        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
-                .append("FROM USUARIO WHERE ID_USUARIO = ?");        
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad")
+                .append(" FROM USUARIO WHERE ID_USUARIO = ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
-                user = new Usuario(); 
                 user.setIdUsuario(rs.getInt(1));
                 user.setUsername(rs.getString(2));
                 user.setCorreo(rs.getString(3));
                 user.setNumCelular(rs.getString(4));
                 user.setEdad(rs.getInt(5));
-                user.setContraseña(rs.getString(6));
             } else {
                 mensaje="Usuario inexistente";
             }         
@@ -88,8 +86,8 @@ public class DaoUsuarioImp implements DaoUsuario {
         //INSERT INTO Usuario VALUES (usuario_seq.NEXTVAL,?,?,?,?)
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Usuario (username, correo, num_celular, edad, contraseña) ")
-                .append("VALUES (?, ?, ?, ?, ?)");
+        sql.append("INSERT INTO Usuario (username, correo, num_celular, edad, contraseña)")
+                .append(" VALUES (?, ?, ?, ?, AES_ENCRYPT(?,'picolife'))");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, usuario.getUsername());
@@ -111,8 +109,8 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public String usuarioUpd(Usuario usuario) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?, contraseña = ? ")
-                .append("WHERE id_usuario=?");
+        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?, contraseña = ?")
+                .append(" WHERE ID_USUARIO=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, usuario.getUsername());
@@ -135,8 +133,8 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public String usuarioDel(Integer id) {
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM Usuario ")                
-                .append("WHERE ID_USUARIO=?");
+        sql.append("DELETE FROM Usuario")                
+                .append(" WHERE ID_USUARIO=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
@@ -160,8 +158,8 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public Usuario UsuarioLog(Usuario usuario) {        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_usuario, username, correo, num_celular, edad, contraseña ")
-                .append("FROM USUARIO WHERE CORREO = ? AND CONTRASEÑA= ?");        
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad, _admin")
+                .append(" FROM USUARIO WHERE CORREO = ? AND CONTRASEÑA= aes_encrypt( ? ,'picolife')");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, usuario.getCorreo());
@@ -173,7 +171,7 @@ public class DaoUsuarioImp implements DaoUsuario {
                 usuario.setCorreo(rs.getString(3));
                 usuario.setNumCelular(rs.getString(4));
                 usuario.setEdad(rs.getInt(5));
-                usuario.setContraseña(rs.getString(6));
+                usuario.setAdmin(rs.getInt(6));
             } else {
                 mensaje="Verifique los datos";
             }         

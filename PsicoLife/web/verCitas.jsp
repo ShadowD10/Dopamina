@@ -13,20 +13,24 @@
     </style>
 
     <body>
+        <%@include file="WEB-INF/jspf/validarCuentaAdmin.jspf" %>
 
 
         <!-- ADMINISTRADOR VER CITAS-->
+        <!-- Prueba de commit-->
 
 
 
         <section class="editar_perfil contenedor">
-            <div class="panel">
+            <div class="panel panel_administrador">
                 <div class="panel_contenido">
                     <a href="#" class="text-center fs-2">PSICO-LIFE</a>
+                    <a href="verUsuarios.jsp">Ver Usuarios</a>
                     <a href="verPacientes.jsp">Ver Pacientes</a>
                     <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="verDoctores.jsp">Ver Doctores</a>
-                    <a href="index.jsp">Cerrar Sesion</a>
+                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
+                    <a href="verPsicologos.jsp">Ver Psicologos</a>
+                    <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
                 </div>
             </div>
 

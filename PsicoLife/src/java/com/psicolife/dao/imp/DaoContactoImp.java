@@ -24,7 +24,7 @@ public class DaoContactoImp implements DaoContacto {
         //INSERT INTO contactanos (id_contacto, nombre, mensaje, correo,fecha_hora)
         //VALUES (contacto_seq.nextval, ?, ?, ?, ?)
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Contacto (nombre, correo, num_celular, mensaje, fecha)")
+        sql.append("INSERT INTO Contacto (nombre, correo, num_celular, mensaje, fecha) ")
                 .append("VALUES (?, ?, ?, ?, ?)");
         
         try ( Connection cn = conn.getConexion()) {

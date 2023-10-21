@@ -17,13 +17,13 @@ public class testDaoUsuarioImp {
         DaoUsuario dao = new DaoUsuarioImp();
         Usuario user = new Usuario();
         
-        user.setUsername("Den");
-        user.setCorreo("Den");
-        user.setNumCelular("999999999");
-        user.setEdad(20);
-        user.setContraseña("123456789");
+
+        user.setCorreo("dennijosu18@gmail.com");
+        user.setContraseña("Denni18");
         
-        System.out.println(dao.usuarioSet(user));
+        user = dao.UsuarioLog(user);
+        
+        System.out.println(user.getUsername());
         
     }
 }

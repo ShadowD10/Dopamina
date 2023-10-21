@@ -7,7 +7,14 @@
 
 
     <body>
-        <%@include file="WEB-INF/jspf/navLogueado.jspf" %>
+        <%@include file="WEB-INF/jspf/nav.jspf" %>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            
+            if(session.getAttribute("user")==null){
+                response.sendRedirect("index.jsp");
+            }        
+        %>
 
 
         <!-- EHISTORIAL -->
@@ -19,7 +26,7 @@
                         <a href="editarPerfil.jsp">Editar Perfil</a>
                         <a href="pacientesUsuario.jsp">Pacientes</a>
                         <a href="historial.jsp">Historial de Citas</a>
-                        <a href="index.jsp">Cerrar Sesion</a>
+                        <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
                     </div>
                 </div>
             </div>

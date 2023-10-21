@@ -8,6 +8,7 @@ import com.psicolife.dao.interfaces.DaoTipoCita;
 import com.psicolife.model.TipoCita;
 import com.psicolife.util.Conexion;
 import java.util.List;
+import org.apache.tomcat.dbcp.dbcp2.PoolingConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
         List<TipoCita> tipoCitas = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_tipoCita, nombre, precio, descripcion, id_psicologo ")
-                .append("FROM Tipo_Cita");
+        sql.append("SELECT id_tipoCita, nombre, precio, descripcion, id_psicologo")
+                .append(" FROM Tipo_Cita");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -59,8 +60,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
     public TipoCita tipoCitaGet(Integer id) {
         TipoCita user = new TipoCita();        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_tipo_cita, nombre, precio, descripcion, id_psicologo ")
-                .append("FROM Tipo_Cita WHERE ID_TIPO_CITA = ?");        
+        sql.append("SELECT id_tipo_cita, nombre, precio, descripcion, id_psicologo")
+                .append(" FROM Tipo_Cita WHERE ID_TIPO_CITA = ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
@@ -85,8 +86,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
         //INSERT INTO TipoCita VALUES (tipoCita_seq.NEXTVAL,?,?,?,?)
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Tipo_Cita (nombre, precio, descripcion, id_psicologo) ")
-                .append("VALUES ( ?, ?, ?, ?)");
+        sql.append("INSERT INTO Tipo_Cita (nombre, precio, descripcion, id_psicologo)")
+                .append(" VALUES ( ?, ?, ?, ?)");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, tipoCita.getNombre());
@@ -107,8 +108,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
     @Override
     public String tipoCitaUpd(TipoCita tipoCita) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Tipo_Cita SET nombre = ?, precio = ?, descripcion = ?, id_psicologo = ?  ")
-                .append("WHERE ID_TIPO_CITA=?");
+        sql.append("UPDATE Tipo_Cita SET nombre = ?, precio = ?, descripcion = ?, id_psicologo = ?")
+                .append(" WHERE ID_TIPO_CITA=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, tipoCita.getNombre());
@@ -129,8 +130,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
     @Override
     public String tipoCitaDel(Integer id) {
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM TipoCita ")                
-                .append("WHERE ID_TIPO_CITA=?");
+        sql.append("DELETE FROM TipoCita")                
+                .append(" WHERE ID_TIPO_CITA=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
@@ -156,7 +157,7 @@ public class DaoTipoCitaImp implements DaoTipoCita {
          TipoCita tipoCita = new TipoCita();
         
                 StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_tipo_cita, nombre, precio, descripcion, id_psicologo ")
+        sql.append("SELECT id_tipo_cita, nombre, precio, descripcion, id_psicologo")
                 .append(" FROM Tipo_Cita WHERE id_psicologo = ?");  
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());

@@ -7,7 +7,14 @@
     
 
 <body>
-    <%@include file="WEB-INF/jspf/navLogueado.jspf" %>
+        <%@include file="WEB-INF/jspf/nav.jspf" %>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            
+            if(session.getAttribute("user")==null){
+                response.sendRedirect("index.jsp");
+            }        
+        %>
 
 
     <!-- PACIENTES REGISTRADOS -->
@@ -18,45 +25,57 @@
                 <a href="editarPerfil.jsp">Editar Perfil</a>
                 <a href="pacientesUsuario.jsp">Pacientes</a>
                 <a href="historial.jsp">Historial de Citas</a>
-                <a href="index.jsp">Cerrar Sesion</a>
+                <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
             </div>
         </div>
 
         <div class="paciente_contenido">
             <h1 class="titulo_paciente">Pacientes Registrados</h1>
             <div class="pacientes_flex">
-                <div class="card_paciente">
-                    <h2>Paciente 1</h2>
-                    <div class="btn_pacientes">
-                        <a class="btn_editar" href="editarPaciente.jsp">Editar</a>
-                        <a class="btn_eliminar" href="#">Eliminar</a>
-                    </div>
-                </div>
-
-                <div class="card_paciente">
-                    <h2>Paciente 1</h2>
-                    <div class="btn_pacientes">
-                        <a class="btn_editar" href="editarPaciente.jsp">Editar</a>
-                        <a class="btn_eliminar" href="#">Eliminar</a>
-                    </div>
+                <div class="card_paciente card_titulo">
+                    <h2>Nombre Paciente</h2>
+                    <h2>Edad</h2>
+                    <h2>Parentezco</h2>
+                    <h2>Fecha y Hora</h2>
+                    <h2>Terapia</h2>
+                    <h2>Psicologo</h2>
                 </div>
                 
                 <div class="card_paciente">
-                    <h2>Paciente 1</h2>
-                    <div class="btn_pacientes">
-                        <a class="btn_editar" href="editarPaciente.jsp">Editar</a>
-                        <a class="btn_eliminar" href="#">Eliminar</a>
-                    </div>
+                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                    <h2 class="card_elemento">27 años</h2>
+                    <h2 class="card_elemento">Hijo</h2>
+                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
+                    <h2 class="card_elemento">Terapia Individual</h2>
+                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
                 
                 <div class="card_paciente">
-                    <h2>Paciente 1</h2>
-                    <div class="btn_pacientes">
-                        <a class="btn_editar" href="editarPaciente.jsp">Editar</a>
-                        <a class="btn_eliminar" href="#">Eliminar</a>
-                    </div>
+                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                    <h2 class="card_elemento">27 años</h2>
+                    <h2 class="card_elemento">Hijo</h2>
+                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
+                    <h2 class="card_elemento">Terapia Individual</h2>
+                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
-
+                
+                <div class="card_paciente">
+                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                    <h2 class="card_elemento">27 años</h2>
+                    <h2 class="card_elemento">Hijo</h2>
+                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
+                    <h2 class="card_elemento">Terapia Individual</h2>
+                    <h2 class="card_elemento">Dr Mendez</h2>
+                </div>
+                
+                <div class="card_paciente">
+                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                    <h2 class="card_elemento">27 años</h2>
+                    <h2 class="card_elemento">Hijo</h2>
+                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
+                    <h2 class="card_elemento">Terapia Individual</h2>
+                    <h2 class="card_elemento">Dr Mendez</h2>
+                </div>
 
             </div>
 

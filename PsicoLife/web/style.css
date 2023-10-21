@@ -672,6 +672,10 @@ form .boton a:hover{
         height: 200px;
         width: 100%;
     }
+    
+    .panel_administrador{
+        height: 350px;
+    }
 }
 
 .panel_contenido{
@@ -869,19 +873,54 @@ form .boton a:hover{
 
 @media (max-width: 768px) {   
     .card_paciente{
-        padding: 0 30px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-.card_paciente h2{
+.card_titulo{
+    height: 50px;
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+@media (max-width: 768px) {   
+    .card_titulo{
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+
+
+.card_paciente .card_elemento{
     margin: auto 0;
-    font-size: 30px;
+    font-size: 17px;
     font-weight: 800;
 }
 
 @media (max-width: 768px) {   
     .card_paciente h2{
         font-size: 23px;
+    }
+}
+
+.card_titulo h2{
+    font-size: 20px;
+    margin: auto 0;
+    font-weight: 900;
+}
+
+@media (max-width: 768px) {   
+    .card_titulo h2{
+        font-size: 18px;
+        font-weight: 900;
     }
 }
 
@@ -918,6 +957,29 @@ form .boton a:hover{
     
     .btn_eliminar{
         font-size: 12px;
+    }
+    
+}
+
+/*=====================VER DOCTORES=======================*/
+
+.card_psicologo .contenido_psicologo{
+    margin: auto 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {   
+    .card_psicologo{
+        height: 300px
+    }
+    
+}
+
+@media (max-width: 768px) {   
+    .card_psicologo .contenido_psicologo{
+        font-size: 17px;
+        margin: 20px 0;
     }
     
 }

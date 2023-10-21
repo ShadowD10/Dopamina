@@ -102,10 +102,41 @@ public class UsuarioValidator {
             Usuario usuario = dao.UsuarioLog(user);
             
             if (usuario.getUsername() != null) {
-                request.setAttribute("user", usuario);
+                request.getSession().setAttribute("user", usuario);
             } else {
                 result = dao.getMensaje();
             }
+        
+        return result;
+    }
+    
+        public String adminLog(){
+        String result = null;
+            
+            Usuario user = new Usuario();
+            user.setCorreo(request.getParameter("correo"));
+            user.setContraseña(request.getParameter("contraseña"));
+            
+            Usuario usuario = dao.UsuarioLog(user);
+            
+            if (usuario.getUsername() != null) {
+                if (usuario.isAdmin()==1){
+                    request.getSession().setAttribute("userAdmin", usuario);
+                } else {
+                    result = "No es una sesion de administrador.";
+                }
+            } else {
+                result = dao.getMensaje();
+            }
+        
+        return result;
+    }
+    
+        public String usuarioLogOut(){
+        String result = null;                        
+
+                request.getSession().removeAttribute("user");
+                request.getSession().invalidate();
         
         return result;
     }

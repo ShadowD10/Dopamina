@@ -8,6 +8,7 @@ import com.psicolife.dao.interfaces.DaoPsicologo;
 import com.psicolife.model.Psicologo;
 import com.psicolife.util.Conexion;
 import java.util.List;
+import org.apache.tomcat.dbcp.dbcp2.PoolingConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,8 @@ public class DaoPsicologoImp implements DaoPsicologo {
         List<Psicologo> psicologos = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_psicologo, nombre, especialidad, num_colegiatura ")
-                .append("FROM PSICOLOGO");
+        sql.append("SELECT id_psicologo, nombre, especialidad, num_colegiatura")
+                .append(" FROM PSICOLOGO");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -58,8 +59,8 @@ public class DaoPsicologoImp implements DaoPsicologo {
     public Psicologo psicologoGet(Integer id) {
         Psicologo user = new Psicologo();        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_psicologo, nombre, especialidad, num_colegiatura ")
-                .append("FROM PSICOLOGO WHERE ID_PSICOLOGO = ?");        
+        sql.append("SELECT id_psicologo, nombre, especialidad, num_colegiatura")
+                .append(" FROM PSICOLOGO WHERE ID_PSICOLOGO = ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
@@ -83,8 +84,8 @@ public class DaoPsicologoImp implements DaoPsicologo {
         //INSERT INTO Psicologo VALUES (psicologo_seq.NEXTVAL,?,?,?,?)
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Psicologo (nombre, especialidad, num_colegiatura) ")
-                .append("VALUES (?, ?, ?)");
+        sql.append("INSERT INTO Psicologo (nombre, especialidad, num_colegiatura)")
+                .append(" VALUES (?, ?, ?)");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, psicologo.getNombre());
@@ -104,8 +105,8 @@ public class DaoPsicologoImp implements DaoPsicologo {
     @Override
     public String psicologoUpd(Psicologo psicologo) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Psicologo SET nombre = ?, especialidad = ?, num_colegiatura = ? ")
-                .append("WHERE ID_PSICOLOGO=?");
+        sql.append("UPDATE Psicologo SET nombre = ?, especialidad = ?, num_colegiatura = ?")
+                .append(" WHERE ID_PSICOLOGO=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, psicologo.getNombre());
@@ -126,8 +127,8 @@ public class DaoPsicologoImp implements DaoPsicologo {
     @Override
     public String psicologoDel(Integer id) {
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM Psicologo ")                
-                .append("WHERE ID_PSICOLOGO=?");
+        sql.append("DELETE FROM Psicologo")                
+                .append(" WHERE ID_PSICOLOGO=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);

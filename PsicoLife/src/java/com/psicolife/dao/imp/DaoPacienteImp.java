@@ -8,6 +8,7 @@ import com.psicolife.dao.interfaces.DaoPaciente;
 import com.psicolife.model.Paciente;
 import com.psicolife.util.Conexion;
 import java.util.List;
+import org.apache.tomcat.dbcp.dbcp2.PoolingConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,8 @@ public class DaoPacienteImp implements DaoPaciente {
         List<Paciente> pacientes = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario ")
-                .append("FROM PACIENTE");
+        sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario")
+                .append(" FROM PACIENTE");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -59,8 +60,8 @@ public class DaoPacienteImp implements DaoPaciente {
     public Paciente pacienteGet(Integer id) {
         Paciente user = new Paciente();        
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario ")
-                .append("FROM PACIENTE WHERE ID_PACIENTE = ?");        
+        sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario")
+                .append(" FROM PACIENTE WHERE ID_PACIENTE = ?");        
         try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
@@ -85,8 +86,8 @@ public class DaoPacienteImp implements DaoPaciente {
         //INSERT INTO Paciente VALUES (paciente_seq.NEXTVAL,?,?,?,?)
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Paciente (nombre, parentezco, edad, id_usuario) ")
-                .append("VALUES ( ?, ?, ?, ?)");
+        sql.append("INSERT INTO Paciente (nombre, parentezco, edad, id_usuario)")
+                .append(" VALUES ( ?, ?, ?, ?)");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, paciente.getNombre());
@@ -107,8 +108,8 @@ public class DaoPacienteImp implements DaoPaciente {
     @Override
     public String pacienteUpd(Paciente paciente) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Paciente SET nombre = ?, parentezco = ?, edad = ?, id_usuario = ? ")
-                .append("WHERE ID_PACIENTE=?");
+        sql.append("UPDATE Paciente SET nombre = ?, parentezco = ?, edad = ?, id_usuario = ?")
+                .append(" WHERE ID_PACIENTE=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, paciente.getNombre());
@@ -129,8 +130,8 @@ public class DaoPacienteImp implements DaoPaciente {
     @Override
     public String pacienteDel(Integer id) {
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM Paciente ")                
-                .append("WHERE ID_PACIENTE=?");
+        sql.append("DELETE FROM Paciente")                
+                .append(" WHERE ID_PACIENTE=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);

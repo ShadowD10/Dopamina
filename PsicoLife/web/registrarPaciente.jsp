@@ -8,7 +8,8 @@
 <body>
     <%@include file="WEB-INF/jspf/navLogueado.jspf" %>
 
-
+    
+    <!-- REGISTRAR PACIENTES -- FUE BORRADO PERO LO DEJO POR SI SE USA MAS ADELANTE UWU -->
     <div class="wrapper">
         <div class="container main">
             <div class="row">

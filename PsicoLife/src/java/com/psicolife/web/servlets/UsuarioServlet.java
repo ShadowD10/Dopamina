@@ -50,8 +50,26 @@ public class UsuarioServlet extends HttpServlet {
                 
                 break;
             case "LOGIN":
+                 mensaje = validador.usuarioLog();
+                 if (mensaje == null){
+                    target = "index.jsp";
+                 } else {
+                    target = "login.jsp";
+                 }
                 break;
-            case "":
+            case "LOGOUT":
+                    mensaje = validador.usuarioLogOut();
+                    if (mensaje == null){
+                        target = "index.jsp";
+                    }
+                break;
+            case "ADMINLOGIN":
+                    mensaje = validador.adminLog();
+                    if (mensaje == null){
+                        target = "verPacientes.jsp";
+                    } else {
+                        target = "loginAdmin.jsp";
+                    }
                 break;
             default:
                 break;

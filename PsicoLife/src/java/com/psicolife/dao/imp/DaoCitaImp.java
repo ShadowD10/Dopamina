@@ -96,11 +96,11 @@ UPDATE Cita SET fecha_hora = ?, id_mascota = ?, id_corte = ?, id_distrito = ? WH
         List<Cita> citas = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT c.id_cita, c.fecha_hora, p.nombre, tc.nombre, ps.nombre FROM Cita c ")
-                .append("INNER JOIN Paciente p on c.id_paciente = p.id_paciente ")
-                .append("INNER JOIN Tipo_Cita tc on c.id_tipo_cita = cr.id_tipo_cita ")
-                .append("INNER JOIN Psicologo ps on c.id_psicologo = ps.id_psicologo ")
-                .append("INNER JOIN Usuario u on p.id_usuario = u.id_usuario WHERE u.id_usuario = ?");
+        sql.append("SELECT cita.id_cita, cita.fecha_hora, paciente.nombre, tipo_cita.nombre, psicologo.nombre FROM Cita")
+                .append(" INNER JOIN Paciente ON cita.id_paciente = paciente.id_paciente")
+                .append(" INNER JOIN Tipo_Cita ON cita.id_tipo_cita = tipo_cita.id_tipo_cita")
+                .append(" INNER JOIN Psicologo ON tipo_cita.id_psicologo = psicologo.id_psicologo")
+                .append(" INNER JOIN Usuario ON paciente.id_usuario = usuario.id_usuario WHERE Usuario.id_usuario = ?");
         
         try(Connection cn = conn.getConexion()){
             citas = new ArrayList();
@@ -126,8 +126,8 @@ UPDATE Cita SET fecha_hora = ?, id_mascota = ?, id_corte = ?, id_distrito = ? WH
     public String citaSet(Cita cita) {
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Tipo_Cita (nombre, precio, descripcion, id_psicologo) ")
-                .append("VALUES (?,?,?,?);");
+        sql.append("INSERT INTO Tipo_Cita (nombre, precio, descripcion, id_psicologo)")
+                .append(" VALUES (?,?,?,?);");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -156,7 +156,7 @@ UPDATE Cita SET fecha_hora = ?, id_mascota = ?, id_corte = ?, id_distrito = ? WH
         
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM Cita")
-            .append("WHERE id_cita = ?;");
+            .append(" WHERE id_cita = ?;");
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);

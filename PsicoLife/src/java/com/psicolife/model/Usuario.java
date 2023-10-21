@@ -10,11 +10,12 @@ public class Usuario {
     private int edad;
     private String contraseña;
     private List<Paciente> pacientes;
+    private int admin;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String username, String correo, String numCelular, int edad, String contraseña, List<Paciente> pacientes) {
+    public Usuario(int idUsuario, String username, String correo, String numCelular, int edad, String contraseña, List<Paciente> pacientes, int admin) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.correo = correo;
@@ -22,8 +23,19 @@ public class Usuario {
         this.edad = edad;
         this.contraseña = contraseña;
         this.pacientes = pacientes;
+        this.admin = admin;
     }
 
+    public int isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+    
+    
+        
     public int getIdUsuario() {
         return idUsuario;
     }
