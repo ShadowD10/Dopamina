@@ -5,6 +5,7 @@
 package com.psicolife.dao.imp;
 
 import com.psicolife.dao.interfaces.DaoPaciente;
+import com.psicolife.dao.interfaces.DaoUsuario;
 import com.psicolife.model.Paciente;
 import com.psicolife.util.Conexion;
 import java.util.List;
@@ -26,6 +27,7 @@ public class DaoPacienteImp implements DaoPaciente {
     
     private final Conexion conn = new Conexion();
     private String mensaje;
+    private DaoUsuario dao = new DaoUsuarioImp();
     
     @Override
     public List<Paciente> pacienteSel() {
@@ -46,6 +48,7 @@ public class DaoPacienteImp implements DaoPaciente {
                 user.setParentesco(rs.getString(3));
                 user.setEdad(rs.getInt(4));
                 user.setIdUsuario(rs.getInt(5));
+                user.setUsuario(dao.usuarioGet(user.getIdUsuario()));
                 pacientes.add(user);
             }            
         } catch (SQLException ex) {
@@ -72,6 +75,7 @@ public class DaoPacienteImp implements DaoPaciente {
                 user.setParentesco(rs.getString(3));
                 user.setEdad(rs.getInt(4));
                 user.setIdUsuario(rs.getInt(5));
+                user.setUsuario(dao.usuarioGet(user.getIdUsuario()));
             } else {
                 mensaje="Paciente inexistente";
             }         
@@ -169,6 +173,7 @@ public class DaoPacienteImp implements DaoPaciente {
                 paciente.setParentesco(rs.getString(3));
                 paciente.setEdad(rs.getInt(4));
                 paciente.setIdUsuario(rs.getInt(5));
+                paciente.setUsuario(dao.usuarioGet(paciente.getIdUsuario()));
             } else {
                 mensaje = "No existe ese paciente";
             }

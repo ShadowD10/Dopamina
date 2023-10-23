@@ -27,10 +27,12 @@ public class UsuarioValidator {
         String result = null;
               
             List<Usuario> usuarios = dao.usuarioSel();
-            if(usuarios!=null){
+            if(usuarios != null){
                 request.setAttribute("listaUsuarios", usuarios);
             }else{
-                result = dao.getMensaje();
+                result = (dao.getMensaje() != null) ? dao.getMensaje() : "No hay usuarios.";
+                List<Usuario> lista = null;
+                request.setAttribute("listaUsuarios", lista);
             }
         
         return result;
@@ -110,7 +112,7 @@ public class UsuarioValidator {
         return result;
     }
     
-        public String adminLog(){
+    public String adminLog(){
         String result = null;
             
             Usuario user = new Usuario();
@@ -132,7 +134,7 @@ public class UsuarioValidator {
         return result;
     }
     
-        public String usuarioLogOut(){
+    public String usuarioLogOut(){
         String result = null;                        
 
                 request.getSession().removeAttribute("user");
@@ -140,4 +142,5 @@ public class UsuarioValidator {
         
         return result;
     }
+
 }

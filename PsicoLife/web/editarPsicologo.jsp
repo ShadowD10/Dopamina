@@ -12,47 +12,37 @@
     </style>
 
     <body>
-
+        
+        <%@include file="WEB-INF/jspf/validarCuentaAdmin.jspf" %>
 
 
         <!-- EDITAR PACIENTE -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel panel_administrador">
-                <div class="panel_contenido">
-                    <a href="#" class="text-center fs-2">PSICO-LIFE</a>
-                    <a href="verUsuarios.jsp">Ver Usuarios</a>
-                    <a href="verPacientes.jsp">Ver Pacientes</a>
-                    <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
-                    <a href="verPsicologos.jsp">Ver Psicologos</a>
-                    <a href="index.jsp">Cerrar Sesion</a>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelAdministrador.jspf" %>
 
             <div class="editar_perfil_contenido editar_paciente">
                 <h1 class="titulo_editar">Editar Psicologo</h1>
-                <form method="POST">
+                <form action="Psicologo" method="POST">
+                    <input type="hidden" name="accion" value="ACT">
+                    <input type="hidden" name="idPsicologo" value="${psicologo.idPsicologo}">
                     <div class="editar_informacion">
                         <div class="inputs">
                             <label>Nombres y Apellidos:</label>
-                            <input type="text" placeholder="Cambiar Nombre" />
+                            <input name="name" type="text" placeholder="${psicologo.nombre}" value="${psicologo.nombre}" required=""/>
                         </div>
-
                         <div class="inputs">
                             <label>Especialidad:</label>
-                            <input type="text" placeholder="Cambiar Especialidad" />
+                            <input name="especialidad" type="text" placeholder="${psicologo.especialidad}" value="${psicologo.especialidad}" required=""/>
                         </div>
 
                         <div class="inputs">
                             <label>Cod Colegiatura:</label>
-                            <input type="number" placeholder="Cambiar Codigo" />
+                            <input name="numColegiatura" type="number" placeholder="${psicologo.numColegiatura}" value="${psicologo.numColegiatura}" required=""/>
                         </div>
-
                         <input class="boton_gestor_usuario" type="submit" value="Actualizar">
                     </div>
                 </form>
-
             </div>
         </section>
 

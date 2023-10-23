@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,38 +21,31 @@
         <!-- REGISTRAR PSICOLOGO -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel panel_administrador">
-                <div class="panel_contenido">
-                    <a href="#" class="text-center fs-2">PSICO-LIFE</a>
-                    <a href="verUsuarios.jsp">Ver Usuarios</a>
-                    <a href="verPacientes.jsp">Ver Pacientes</a>
-                    <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
-                    <a href="verPsicologos.jsp">Ver Psicologos</a>
-                    <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelAdministrador.jspf" %>
 
             <div class="editar_perfil_contenido editar_paciente">
                 <h1 class="titulo_editar">Registrar Psicologo</h1>
-                <form method="POST">
+                <form action="Psicologo" method="POST">
+                    <input type="hidden" name="accion" value="ADD">
                     <div class="editar_informacion">
                         <div class="inputs">
                             <label>Nombres y Apellidos:</label>
-                            <input type="text" placeholder="Ingresar Nombres" />
+                            <input type="text" name="name" placeholder="Ingresar Nombres" required=""/>
                         </div>
 
                         <div class="inputs">
                             <label>Especialidad:</label>
-                            <input type="text" placeholder="Ingresar Especialidad" />
+                            <input type="text" name="especialidad" placeholder="Ingresar Especialidad" required=""/>
                         </div>
 
                         <div class="inputs">
-                            <label>Cod Colegiatura:</label>
-                            <input type="number" placeholder="Ingresar Codigo" />
+                            <label>Cod. Colegiatura:</label>
+                            <input type="number" name="codColegiatura" placeholder="Ingresar Codigo" required=""/>
                         </div>
-
-                        <input class="boton_gestor_usuario" type="submit" value="Actualizar">
+                        <input class="boton_gestor_usuario" type="submit" value="Registrar"/>
+                        <c:if test="${mensaje!=null}">
+                            <p class="text-center">${mensaje}</p>
+                        </c:if>
                     </div>
                 </form>
 

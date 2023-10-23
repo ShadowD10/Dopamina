@@ -135,9 +135,7 @@ public class DaoPsicologoImp implements DaoPsicologo {
             int resultado = ps.executeUpdate();
             if (resultado == 0) {
                 mensaje = "Cero registros eliminados";
-            } else {
-                mensaje = "Eliminacion exitosa";
-            }
+            }            
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }        

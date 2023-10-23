@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,17 +20,7 @@
         <!-- ADMINISTRADOR VER DOCTORES-->
 
         <section class="editar_perfil contenedor">
-            <div class="panel panel_administrador">
-                <div class="panel_contenido">
-                    <a href="#" class="text-center fs-2">PSICO-LIFE</a>
-                    <a href="verUsuarios.jsp">Ver Usuarios</a>
-                    <a href="verPacientes.jsp">Ver Pacientes</a>
-                    <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
-                    <a href="verPsicologos.jsp">Ver Psicologos</a>
-                    <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelAdministrador.jspf" %>
 
             <div class="paciente_contenido">
                 <h1 class="titulo_paciente">Psicologos</h1>
@@ -39,60 +30,33 @@
                         <h2>Especialidad</h2>
                         <h2>Codigo Colegiatura</h2>
                         <h2>Opciones</h2>
-                    </div>
-
-                    <div class="card_paciente card_psicologo">
-                        <h2 class="contenido_psicologo">Juan Pedro Solar Enriquez</h2>
-                        <h2 class="contenido_psicologo">Terapeuta Infantil</h2>
-                        <h2 class="contenido_psicologo">123456789</h2>
-                        <div class="btn_pacientes">
-                            <a class="btn_editar" href="editarPsicologo.jsp">Editar</a>
-                            <a class="btn_eliminar" href="#">Eliminar</a>
-                        </div>
-                    </div>
+                    </div>                    
+                    <c:if test="${listaPsicologos!=null}">
+                        <c:forEach var="psicologo" items="${listaPsicologos}">
+                            <div class="card_paciente card_psicologo">
+                                <h2 class="contenido_psicologo">${psicologo.nombre}</h2>
+                                <h2 class="contenido_psicologo">${psicologo.especialidad}</h2>
+                                <h2 class="contenido_psicologo">${psicologo.numColegiatura}</h2>
+                                <div class="btn_pacientes">
+                                    <form action="Psicologo" method="POST">
+                                        <input type="hidden" name="accion" value="SELEC">
+                                        <input type="hidden" name="psicologoId" value="${psicologo.idPsicologo}">
+                                        <input class="btn text-light btn_editar" type="submit" value="Editar" />
+                                    </form>
+                                    <form action="Psicologo" method="POST">
+                                        <input type="hidden" name="accion" value="DEL">
+                                        <input type="hidden" name="psicologoId" value="${psicologo.idPsicologo}">
+                                        <input class="btn text-light btn_eliminar" type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar?')"/>
+                                    </form>
+                                </div>
+                            </div>                
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${mensaje!=null}">
+                        <p class="text-center">${mensaje}</p>
+                    </c:if>
                     
-                    <div class="card_paciente card_psicologo">
-                        <h2 class="contenido_psicologo">Juan Pedro Solar Enriquez</h2>
-                        <h2 class="contenido_psicologo">Terapeuta Infantil</h2>
-                        <h2 class="contenido_psicologo">123456789</h2>
-                        <div class="btn_pacientes">
-                            <a class="btn_editar" href="editarPsicologo.jsp">Editar</a>
-                            <a class="btn_eliminar" href="#">Eliminar</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card_paciente card_psicologo">
-                        <h2 class="contenido_psicologo">Juan Pedro Solar Enriquez</h2>
-                        <h2 class="contenido_psicologo">Terapeuta Infantil</h2>
-                        <h2 class="contenido_psicologo">123456789</h2>
-                        <div class="btn_pacientes">
-                            <a class="btn_editar" href="editarPsicologo.jsp">Editar</a>
-                            <a class="btn_eliminar" href="#">Eliminar</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card_paciente card_psicologo">
-                        <h2 class="contenido_psicologo">Juan Pedro Solar Enriquez</h2>
-                        <h2 class="contenido_psicologo">Terapeuta Infantil</h2>
-                        <h2 class="contenido_psicologo">123456789</h2>
-                        <div class="btn_pacientes">
-                            <a class="btn_editar" href="editarPsicologo.jsp">Editar</a>
-                            <a class="btn_eliminar" href="#">Eliminar</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card_paciente card_psicologo">
-                        <h2 class="contenido_psicologo">Juan Pedro Solar Enriquez</h2>
-                        <h2 class="contenido_psicologo">Terapeuta Infantil</h2>
-                        <h2 class="contenido_psicologo">123456789</h2>
-                        <div class="btn_pacientes">
-                            <a class="btn_editar" href="editarPsicologo.jsp">Editar</a>
-                            <a class="btn_eliminar" href="#">Eliminar</a>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
         </section>
 

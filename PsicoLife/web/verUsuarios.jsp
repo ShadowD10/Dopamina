@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,64 +22,36 @@
         <!-- USUARIOS REGISTRADOS -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel panel_administrador">
-                <div class="panel_contenido">
-                    <a href="#" class="text-center fs-2">PSICO-LIFE</a>
-                    <a href="verUsuarios.jsp">Ver Usuarios</a>
-                    <a href="verPacientes.jsp">Ver Pacientes</a>
-                    <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
-                    <a href="verPsicologos.jsp">Ver Psicologos</a>
-                    <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
-                </div>
-            </div>
+            
+            <%@include file="WEB-INF/jspf/panelAdministrador.jspf" %>
 
             <div class="paciente_contenido">
                 <h1 class="titulo_paciente">Usuarios Registrados</h1>
                 <div class="pacientes_flex">
                     <div class="card_paciente card_titulo">
                         <h2>Correo</h2>
-                        <h2>Usuario</h2>
-                        <h2>Telefono</h2>
+                        <h2>Nombre</h2>
+                        <h2>Celular</h2>
                         <h2>Edad</h2>
-                    </div>
-
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">juan.osorio@gmail.com</h2>
-                        <h2 class="card_elemento">JuanO</h2>
-                        <h2 class="card_elemento">962475128</h2>
-                        <h2 class="card_elemento">30 años</h2>
-                    </div>
-                    
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">juan.osorio@gmail.com</h2>
-                        <h2 class="card_elemento">JuanO</h2>
-                        <h2 class="card_elemento">962475128</h2>
-                        <h2 class="card_elemento">30 años</h2>
-                    </div>
-                    
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">juan.osorio@gmail.com</h2>
-                        <h2 class="card_elemento">JuanO</h2>
-                        <h2 class="card_elemento">962475128</h2>
-                        <h2 class="card_elemento">30 años</h2>
-                    </div>
-                    
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">juan.osorio@gmail.com</h2>
-                        <h2 class="card_elemento">JuanO</h2>
-                        <h2 class="card_elemento">962475128</h2>
-                        <h2 class="card_elemento">30 años</h2>
-                    </div>
-                    
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">juan.osorio@gmail.com</h2>
-                        <h2 class="card_elemento">JuanO</h2>
-                        <h2 class="card_elemento">962475128</h2>
-                        <h2 class="card_elemento">30 años</h2>
-                    </div>
-                    
+                    </div>                   
                 </div>
+                <br/>
+                <c:if test="${listaUsuarios!=null}">
+                    <c:forEach var="usuario" items="${listaUsuarios}">
+                        <div class="pacientes_flex">
+                            <div class="card_paciente card_titulo">
+                                <h2>${usuario.correo}</h2>
+                                <h2>${usuario.username}</h2>
+                                <h2>${usuario.numCelular}</h2>
+                                <h2>${usuario.edad}</h2>
+                            </div>                   
+                        </div>
+                        <br/>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${mensaje!=null}">
+                    <p class="text-center">${mensaje}</p>
+                </c:if>
 
             </div>
         </section>

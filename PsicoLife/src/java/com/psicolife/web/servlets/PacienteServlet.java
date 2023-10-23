@@ -4,8 +4,7 @@
  */
 package com.psicolife.web.servlets;
 
-import com.psicolife.model.Usuario;
-import com.psicolife.web.validators.UsuarioValidator;
+import com.psicolife.web.validators.PacienteValidator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,14 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
- * @author Denni
+ * @author Usuario
  */
-@WebServlet(name = "UsuarioServlet", urlPatterns = {"/Usuario"})
-public class UsuarioServlet extends HttpServlet {
+@WebServlet(name = "PacienteServlet", urlPatterns = {"/Paciente"})
+public class PacienteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,59 +36,24 @@ public class UsuarioServlet extends HttpServlet {
         String accion = request.getParameter("accion");
         accion = (accion == null) ? "" : accion;
         String mensaje = null;
-        String target = "register.jsp";
+        String target = "verPacientes.jsp";
         
-        UsuarioValidator validador = new UsuarioValidator(request);
+        PacienteValidator validador = new PacienteValidator(request);
         
-        switch (accion) {
-        
-            case "SINGIN":
+        switch(accion){
+            case "LISTAR-AMD":
                 
-                    mensaje = validador.usuarioSet();
-                    
-                    target = (mensaje == null) ? "login.jsp" : "register.jsp" ;
+                mensaje = validador.listarPacientesAdm();
+                target = "verPacientes.jsp";
                 
                 break;
-            case "LOGIN":
-                 mensaje = validador.usuarioLog();
-                 if (mensaje == null){
-                    target = "index.jsp";
-                 } else {
-                    target = "login.jsp";
-                 }
-                break;
-            case "LOGOUT":
-                    mensaje = validador.usuarioLogOut();
-                    if (mensaje == null){
-                        target = "index.jsp";
-                    }
-                break;
-            case "ADMINLOGIN":
-                    mensaje = validador.adminLog();
-                    if (mensaje == null){
-                        target = "Paciente?accion=LISTAR-AMD";
-                    } else {
-                        target = "loginAdmin.jsp";
-                    }
-                break;
-            case "LISTAR":
-                
-                mensaje = validador.usuarioSel();
-                target = "verUsuarios.jsp";
-                
-                break;
-            default:
-                break;
-        
-        }
+        }        
         
         if(mensaje != null){
             request.setAttribute("mensaje", mensaje);
-        }
-        
+        }        
         
         request.getRequestDispatcher(target).forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,8 +4,7 @@
  */
 package com.psicolife.web.servlets;
 
-import com.psicolife.model.Usuario;
-import com.psicolife.web.validators.UsuarioValidator;
+import com.psicolife.web.validators.PsicologoValidator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,14 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
- * @author Denni
+ * @author Usuario
  */
-@WebServlet(name = "UsuarioServlet", urlPatterns = {"/Usuario"})
-public class UsuarioServlet extends HttpServlet {
+@WebServlet(name = "PsicologoServlet", urlPatterns = {"/Psicologo"})
+public class PsicologoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,51 +30,60 @@ public class UsuarioServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
         response.setContentType("text/html;charset=UTF-8");
         
         String accion = request.getParameter("accion");
         accion = (accion == null) ? "" : accion;
         String mensaje = null;
-        String target = "register.jsp";
+        String target = "index.jsp";
         
-        UsuarioValidator validador = new UsuarioValidator(request);
+        PsicologoValidator validador = new PsicologoValidator(request);
         
-        switch (accion) {
-        
-            case "SINGIN":
+        switch(accion){
+            
+            case "ADD":
                 
-                    mensaje = validador.usuarioSet();
-                    
-                    target = (mensaje == null) ? "login.jsp" : "register.jsp" ;
+                mensaje = validador.agregarPsicologo();
                 
-                break;
-            case "LOGIN":
-                 mensaje = validador.usuarioLog();
-                 if (mensaje == null){
-                    target = "index.jsp";
-                 } else {
-                    target = "login.jsp";
-                 }
-                break;
-            case "LOGOUT":
-                    mensaje = validador.usuarioLogOut();
-                    if (mensaje == null){
-                        target = "index.jsp";
-                    }
-                break;
-            case "ADMINLOGIN":
-                    mensaje = validador.adminLog();
-                    if (mensaje == null){
-                        target = "Paciente?accion=LISTAR-AMD";
-                    } else {
-                        target = "loginAdmin.jsp";
-                    }
+                mensaje = (mensaje == null) ? "Psicologo agregado exitosamente" : mensaje;
+                
+                target = "registrarPsicologo.jsp";
+                
                 break;
             case "LISTAR":
                 
-                mensaje = validador.usuarioSel();
-                target = "verUsuarios.jsp";
+                mensaje = validador.listarPsicologo();
+                target = "verPsicologos.jsp";
+                
+                break;
+            case "SELEC":
+                
+                mensaje = validador.seleccionarPsicologo();
+                
+                if(mensaje == null){
+                    target = "editarPsicologo.jsp";
+                }else{
+                    target = "Psicologo?accion=LISTAR";
+                }
+                
+                break;
+            case "ACT":
+                
+                mensaje = validador.actualizarPsicologo();
+                
+                if(mensaje == null){
+                    target = "Psicologo?accion=LISTAR";
+                }else{
+                    target = "editarPsicologo.jsp";
+                }
+                
+                    break;
+            case "DEL":
+                
+                mensaje = validador.eliminarPsicologo();
+                
+                target = "Psicologo?accion=LISTAR";
                 
                 break;
             default:
@@ -87,7 +94,6 @@ public class UsuarioServlet extends HttpServlet {
         if(mensaje != null){
             request.setAttribute("mensaje", mensaje);
         }
-        
         
         request.getRequestDispatcher(target).forward(request, response);
 

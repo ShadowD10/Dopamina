@@ -23,20 +23,6 @@ public class DaoCitaImp implements DaoCita {
     private String mensaje;
     private Conexion conn = new Conexion();
     
-/*
--- Tabla Cita
-SELECT id_cita, fecha_hora, id_mascota, id_corte, id_distrito FROM Cita
-
-SELECT id_cita, fecha_hora, id_mascota, id_corte, id_distrito FROM Cita WHERE id_cita = ?}
-
-INSERT INTO Usuario (id_cita, fecha_hora, id_mascota, id_corte, id_distrito) 
-VALUES (cita_seq.NEXTVAL,?,?,?,?);
-   
-DELETE FROM Cita
-WHERE id_cita = ?;
-    
-UPDATE Cita SET fecha_hora = ?, id_mascota = ?, id_corte = ?, id_distrito = ? WHERE id_cita = ?
-*/    
     
     @Override
     public List<Cita> citaSel() {
