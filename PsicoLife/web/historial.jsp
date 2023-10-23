@@ -36,83 +36,69 @@
                             <th>Total</th>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
                         <tr>
-                            <td>Max</td>
+                            <td>Max Perez</td>
                             <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
+                            <td>Terapia Individual</td>
                             <td>Dr. Juan Pablo</td>
                             <td>50.00</td>
                         </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                       
+                        
                     </table>
                 </div>   
             </div>
