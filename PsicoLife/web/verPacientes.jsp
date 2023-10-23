@@ -66,6 +66,12 @@
                         <h2 class="card_elemento">Hijo</h2>
                         <h2 class="card_elemento">Miguel Angel Dulanto</h2>
                     </div>
+                    <div class="card_paciente">
+                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                        <h2 class="card_elemento">27 años</h2>
+                        <h2 class="card_elemento">Hijo</h2>
+                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
+                    </div>
 
                    
 
