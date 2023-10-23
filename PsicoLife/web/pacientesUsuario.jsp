@@ -29,46 +29,35 @@
                     <h2>Nombre Paciente</h2>
                     <h2>Edad</h2>
                     <h2>Parentezco</h2>
-                    <h2>Fecha y Hora</h2>
-                    <h2>Terapia</h2>
-                    <h2>Psicologo</h2>
                 </div>
                 
                 <div class="card_paciente">
                     <h2 class="card_elemento">Juan Carlos Osorio</h2>
                     <h2 class="card_elemento">27 años</h2>
                     <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
-                
                 <div class="card_paciente">
                     <h2 class="card_elemento">Juan Carlos Osorio</h2>
                     <h2 class="card_elemento">27 años</h2>
                     <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
-                
                 <div class="card_paciente">
                     <h2 class="card_elemento">Juan Carlos Osorio</h2>
                     <h2 class="card_elemento">27 años</h2>
                     <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
-                
                 <div class="card_paciente">
                     <h2 class="card_elemento">Juan Carlos Osorio</h2>
                     <h2 class="card_elemento">27 años</h2>
                     <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
                 </div>
+                <div class="card_paciente">
+                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
+                    <h2 class="card_elemento">27 años</h2>
+                    <h2 class="card_elemento">Hijo</h2>
+                </div>
+                
+               
 
             </div>
 
