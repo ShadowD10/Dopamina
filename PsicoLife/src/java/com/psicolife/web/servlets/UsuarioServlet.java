@@ -79,6 +79,12 @@ public class UsuarioServlet extends HttpServlet {
                 target = "verUsuarios.jsp";
                 
                 break;
+            case "UPD":
+                
+                mensaje = validador.usuarioUpd();
+                target = "editarPerfil.jsp";
+                
+                break;
             default:
                 break;
         

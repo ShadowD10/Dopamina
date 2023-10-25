@@ -4,7 +4,7 @@
  */
 package com.psicolife.web.servlets;
 
-import com.psicolife.web.validators.PacienteValidator;
+import com.psicolife.web.validators.ConsultaCitaValidator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,8 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Usuario
  */
-@WebServlet(name = "PacienteServlet", urlPatterns = {"/Paciente"})
-public class PacienteServlet extends HttpServlet {
+@WebServlet(name = "ConsultaCitaServlet", urlPatterns = {"/ConsultaCita"})
+public class ConsultaCitaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +36,33 @@ public class PacienteServlet extends HttpServlet {
         String accion = request.getParameter("accion");
         accion = (accion == null) ? "" : accion;
         String mensaje = null;
-        String target = "verPacientes.jsp";
+        String target = "index.jsp";
         
-        PacienteValidator validador = new PacienteValidator(request);
+        ConsultaCitaValidator validador = new ConsultaCitaValidator(request);
         
-        switch(accion){
+        switch (accion){
             case "LISTAR-AMD":
                 
-                mensaje = validador.listarPacientesAdm();
-                target = "verPacientes.jsp";
+                mensaje = validador.listarCitas();
+                
+                target = "verCitas.jsp";
                 
                 break;
             case "LISTARUSR":
-                
-                mensaje = validador.listarPacientesUsr();
-                target = "pacientesUsuario.jsp";
-                
+
+                mensaje = validador.listarCitas();
+
+                target = "historial.jsp";
+
                 break;
-        }  
-        
+            default:
+                mensaje = "Opcion no soportada.";
+                break;
+        }
         
         if(mensaje != null){
             request.setAttribute("mensaje", mensaje);
-        }        
+        }
         
         request.getRequestDispatcher(target).forward(request, response);
     }

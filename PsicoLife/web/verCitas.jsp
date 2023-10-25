@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,9 @@
 
             <div class="editar_perfil_contenido historial_citas">
                 <h1 class="titulo_historial">Historial de Citas</h1>
+                <c:if test="${mensaje != null}">
+                    <p class="text-center">${mensaje}</p>
+                </c:if>
                 <div class="historial_tabla">
                     <table>
                         <tr>
@@ -35,90 +39,21 @@
                             <th>Psicologo</th>
                             <th>Total</th>
                         </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                       
+                        <c:if test="${listaCitas != null}">
+                            <c:forEach var="cita" items="${listaCitas}">
+                                <tr>
+                                    <td>${cita.nombrePaciente}</td>
+                                    <td>${cita.fechaHora}</td>
+                                    <td>${cita.nombreTipoCita}</td>
+                                    <td>${cita.nombrePsicologo}</td>
+                                    <td>${cita.precio}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
                     </table>
                 </div>   
             </div>
         </section>
-
-
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

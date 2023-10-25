@@ -8,26 +8,13 @@
 
 <body>
         <%@include file="WEB-INF/jspf/nav.jspf" %>
-        <%
-            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            
-            if(session.getAttribute("user")==null){
-                response.sendRedirect("index.jsp");
-            }        
-        %>
+        <%@include file="WEB-INF/jspf/validarCuentaUsuario.jspf" %>
 
 
     <!-- PACIENTES REGISTRADOS -->
 
     <section class="editar_perfil contenedor">
-        <div class="panel">
-            <div class="panel_contenido">
-                <a href="editarPerfil.jsp">Editar Perfil</a>
-                <a href="pacientesUsuario.jsp">Pacientes</a>
-                <a href="historial.jsp">Historial de Citas</a>
-                <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
-            </div>
-        </div>
+        <%@include file="WEB-INF/jspf/panelUsuario.jspf" %>
 
         <div class="paciente_contenido">
             <h1 class="titulo_paciente">Pacientes Registrados</h1>
@@ -36,46 +23,20 @@
                     <h2>Nombre Paciente</h2>
                     <h2>Edad</h2>
                     <h2>Parentezco</h2>
-                    <h2>Fecha y Hora</h2>
-                    <h2>Terapia</h2>
-                    <h2>Psicologo</h2>
                 </div>
                 
-                <div class="card_paciente">
-                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                    <h2 class="card_elemento">27 años</h2>
-                    <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
-                </div>
-                
-                <div class="card_paciente">
-                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                    <h2 class="card_elemento">27 años</h2>
-                    <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
-                </div>
-                
-                <div class="card_paciente">
-                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                    <h2 class="card_elemento">27 años</h2>
-                    <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
-                </div>
-                
-                <div class="card_paciente">
-                    <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                    <h2 class="card_elemento">27 años</h2>
-                    <h2 class="card_elemento">Hijo</h2>
-                    <h2 class="card_elemento">19/10/2023 19:28:32</h2>
-                    <h2 class="card_elemento">Terapia Individual</h2>
-                    <h2 class="card_elemento">Dr Mendez</h2>
-                </div>
+                <c:if test="${listaPacientes != null}">
+                        <c:forEach var="paciente" items="${listaPacientes}">
+                            <div class="card_paciente">
+                                <h2 class="card_elemento">${paciente.nombre}</h2>
+                                <h2 class="card_elemento">${paciente.edad}</h2>
+                                <h2 class="card_elemento">${paciente.parentesco}</h2>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${mensaje!=null}">
+                        <p class="text-center">${mensaje}</p>
+                    </c:if> 
 
             </div>
 

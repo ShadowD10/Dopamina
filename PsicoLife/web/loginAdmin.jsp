@@ -44,9 +44,7 @@
                                 <p class="text-center">${mensaje}</p>
                             </c:if>
                             <div class="signin">
-                                <span
-                                    >VISTA ADMIN PRUEBA <a href="verPacientes.jsp">Ingresa aquí</a></span
-                                >
+                                
                             </div>
                         </div>
                     </form>

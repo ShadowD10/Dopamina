@@ -10,7 +10,7 @@ import java.util.List;
 public interface DaoPaciente {
     List<Paciente> pacienteSel(); //SELECT * FROM
     Paciente pacienteGet(Integer id); //SELECT * FROM WHERE
-    Paciente pacienteUserGet(Integer idUser); //SELECT * FROM WHERE
+    List<Paciente> pacienteUserGet(Integer idUser); //SELECT * FROM WHERE
     String pacienteSet(Paciente paciente); //INSERT 
     String pacienteUpd(Paciente paciente); //UPDATE
     String pacienteDel(Integer id); //DELETE

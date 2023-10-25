@@ -8,28 +8,13 @@
 
     <body>
         <%@include file="WEB-INF/jspf/nav.jspf" %>
-        <%
-            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            
-            if(session.getAttribute("user")==null){
-                response.sendRedirect("index.jsp");
-            }        
-        %>
+        <%@include file="WEB-INF/jspf/validarCuentaUsuario.jspf" %>
 
 
         <!-- EHISTORIAL -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel">
-                <div class="panel_contenido">
-                    <div class="panel_contenido">
-                        <a href="editarPerfil.jsp">Editar Perfil</a>
-                        <a href="pacientesUsuario.jsp">Pacientes</a>
-                        <a href="historial.jsp">Historial de Citas</a>
-                        <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
-                    </div>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelUsuario.jspf" %>
 
             <div class="editar_perfil_contenido historial_citas">
                 <h1 class="titulo_historial">Historial de Citas</h1>
@@ -42,84 +27,20 @@
                             <th>Psicologo</th>
                             <th>Total</th>
                         </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Max</td>
-                            <td>2023-10-15</td>
-                            <td>Corte de Pelo</td>
-                            <td>Dr. Juan Pablo</td>
-                            <td>50.00</td>
-                        </tr>
-                       
+                        <c:if test="${listaCitas != null}">
+                            <c:forEach var="cita" items="${listaCitas}">
+                                <tr>
+                                    <td>${cita.nombrePaciente}</td>
+                                    <td>${cita.fechaHora}</td>
+                                    <td>${cita.nombreTipoCita}</td>
+                                    <td>${cita.nombrePsicologo}</td>
+                                    <td>${cita.precio}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${mensaje != null}">
+                            <p class="text-center">${mensaje}</p>
+                        </c:if>
                     </table>
                 </div>   
             </div>

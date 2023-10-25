@@ -157,31 +157,33 @@ public class DaoPacienteImp implements DaoPaciente {
     }
 
     @Override
-    public Paciente pacienteUserGet(Integer idUser) {
-         Paciente paciente = new Paciente();
+    public List<Paciente> pacienteUserGet(Integer idUser) {
+        List<Paciente> pacientes = null;
         
-                StringBuilder sql = new StringBuilder();
+        StringBuilder sql = new StringBuilder();
         sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario")
-                .append(" FROM Paciente WHERE id_usuario = ?");  
+                .append(" FROM PACIENTE WHERE id_paciente = ? ");
+        
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, idUser);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()){
-                paciente.setIdPaciente(rs.getInt(1));
-                paciente.setNombre(rs.getString(2));
-                paciente.setParentesco(rs.getString(3));
-                paciente.setEdad(rs.getInt(4));
-                paciente.setIdUsuario(rs.getInt(5));
-                paciente.setUsuario(dao.usuarioGet(paciente.getIdUsuario()));
-            } else {
-                mensaje = "No existe ese paciente";
-            }
-        } catch (Exception e) {
-            mensaje = e.getMessage();
+            pacientes = new ArrayList<>();
+            while (rs.next()){
+                Paciente user = new Paciente();
+                user.setIdPaciente(rs.getInt(1));
+                user.setNombre(rs.getString(2));
+                user.setParentesco(rs.getString(3));
+                user.setEdad(rs.getInt(4));
+                user.setIdUsuario(rs.getInt(5));
+                user.setUsuario(dao.usuarioGet(user.getIdUsuario()));
+                pacientes.add(user);
+            }            
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+            JOptionPane.showMessageDialog(null, mensaje);
         }
-        
-        return paciente;
+        return pacientes;
     }
     
 }

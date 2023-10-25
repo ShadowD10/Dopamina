@@ -2,10 +2,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <div class="panel panel_administrador">
     <div class="panel_contenido">
-        <a href="#" class="text-center fs-2">PSICO-LIFE</a>
+        <a href="Usuario?accion=LOGOUT" class="text-center fs-2">PSICO-LIFE</a>
         <a href="Usuario?accion=LISTAR">Ver Usuarios</a>
         <a href="Paciente?accion=LISTAR-AMD">Ver Pacientes</a>
-        <a href="verCitas.jsp">Ver Citas</a>
+        <a href="ConsultaCita?accion=LISTAR-AMD">Ver Citas</a>
         <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
         <a href="Psicologo?accion=LISTAR">Ver Psicologos</a>
         <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>

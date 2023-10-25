@@ -76,11 +76,18 @@ public class UsuarioValidator {
             user.setUsername(request.getParameter("username"));
             user.setCorreo(request.getParameter("correo"));
             user.setNumCelular(request.getParameter("numeroCelular"));
-            user.setEdad(Integer.valueOf(request.getParameter("edad")));
-            user.setContraseña(request.getParameter("contraseña"));
+            user.setEdad(Integer.parseInt(request.getParameter("edad")));
+            user.setIdUsuario(Integer.parseInt(request.getParameter("userID")));
             
             result = dao.usuarioUpd(user);
-        
+            
+            if(result == null){
+                request.getSession().invalidate();
+                request.getSession().setAttribute("user", user);
+            }
+            
+            result = (result == null) ? "Usuario modificado exitosamente." : result;
+                    
         return result;
     }
     

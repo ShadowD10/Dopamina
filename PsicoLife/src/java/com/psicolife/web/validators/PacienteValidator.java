@@ -39,4 +39,17 @@ public class PacienteValidator {
         return result;
     }
     
+    public String listarPacientesUsr(){
+        String result = null;
+        List<Paciente> pacientes = dao.pacienteUserGet(Integer.valueOf(request.getParameter("userID")));
+        if(!pacientes.isEmpty()){
+            request.setAttribute("listaPacientes", pacientes);
+        } else {
+            result = (dao.getMensaje() != null) ? dao.getMensaje() : "No hay pacientes.";
+            List<Paciente> lista = null;
+            request.setAttribute("listaPacientes", lista);
+        }
+        return result;
+    }
+    
 }

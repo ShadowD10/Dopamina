@@ -4,6 +4,7 @@
  */
 package com.psicolife.dao.imp;
 
+import com.psicolife.dao.interfaces.DaoPaciente;
 import com.psicolife.dao.interfaces.DaoUsuario;
 import com.psicolife.model.Usuario;
 import com.psicolife.util.Conexion;
@@ -109,7 +110,7 @@ public class DaoUsuarioImp implements DaoUsuario {
     @Override
     public String usuarioUpd(Usuario usuario) {
          StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?, contraseña = ?")
+        sql.append("UPDATE Usuario SET username = ?, correo = ?, num_celular = ?, edad = ?")
                 .append(" WHERE ID_USUARIO=?");
          try ( Connection cn = conn.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -117,8 +118,7 @@ public class DaoUsuarioImp implements DaoUsuario {
             ps.setString(2, usuario.getCorreo());
             ps.setString(3, usuario.getNumCelular());
             ps.setInt(4, usuario.getEdad());
-            ps.setString(5, usuario.getContraseña());
-            ps.setInt(6, usuario.getIdUsuario());
+            ps.setInt(5, usuario.getIdUsuario());
             int resultado = ps.executeUpdate();
             if (resultado == 0) {
                 mensaje = "Cero registros modificados";
