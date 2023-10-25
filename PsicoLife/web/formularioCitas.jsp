@@ -22,7 +22,9 @@
         <div class="form_contenedor">
             <div class="titulo">Reservar Cita</div>
             <div class="contenido">
-                <form action="#" method="POST">
+                <form action="Cita" method="POST">
+                    <input type="hidden" name="accion" value="GENCITA">
+                    <input type="hidden" name="userID" value="${user.idUsuario}">
                     <div class="usuario-detalles">
                         <div class="input-box">
                             <span class="detalles">Nombre del Paciente</span>
@@ -57,7 +59,7 @@
 
                         <div class="input-box">
                             <span class="detalles">Fecha</span>
-                            <input class="fecha" name="fecha" type="datetime-local" required>
+                            <input class="fecha" name="fecha" type="datetime-local" required >
                         </div>
 
                         <div class="input-box">
@@ -65,7 +67,7 @@
                             <select name="terapia" required>
                                 <option value="" disabled selected>Selecciona la Terapia...</option>
                                 <c:forEach var="terapia" items="${listaTerapias}">
-                                    <option value="${terapia}">${terapia.nombre}</option>
+                                    <option value="${terapia.idTipoCita}">${terapia.nombre}</option>
                                 </c:forEach>
                             </select>
                         </div>                     

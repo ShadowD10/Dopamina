@@ -162,7 +162,7 @@ public class DaoPacienteImp implements DaoPaciente {
         
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario")
-                .append(" FROM PACIENTE WHERE id_paciente = ? ");
+                .append(" FROM PACIENTE WHERE id_usuario = ? ");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -184,6 +184,31 @@ public class DaoPacienteImp implements DaoPaciente {
             JOptionPane.showMessageDialog(null, mensaje);
         }
         return pacientes;
+    }
+
+    @Override
+    public Integer pacienteGetNewId(Integer userId, String name) {
+        Integer pacienteId = null;
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT id_paciente " +
+                    "FROM paciente " +
+                    "WHERE id_usuario = ? AND nombre = ?;");        
+        try ( Connection cn = conn.getConexion()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setInt(1, userId);
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                pacienteId = rs.getInt(1);                
+            } else {
+                mensaje="Paciente inexistente";
+            }         
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }        
+        
+        return pacienteId;
     }
     
 }

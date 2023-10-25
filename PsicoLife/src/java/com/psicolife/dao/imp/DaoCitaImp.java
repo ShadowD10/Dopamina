@@ -112,15 +112,14 @@ public class DaoCitaImp implements DaoCita {
     public String citaSet(Cita cita) {
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO Tipo_Cita (nombre, precio, descripcion, id_psicologo)")
-                .append(" VALUES (?,?,?,?);");
+        sql.append("INSERT INTO `admin_pscolife`.`cita` (`fecha_hora`, `id_tipo_cita`, `id_paciente`)")
+                .append(" VALUES (?,?,?);");
         
         try(Connection cn = conn.getConexion()){
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ps.setInt(1, cita.getIdCita());
-            ps.setTimestamp(2, cita.getFechaHora());
-            ps.setInt(3, cita.getIdTipoCita());
-            ps.setInt(4, cita.getIdPaciente());
+            ps.setTimestamp(1, cita.getFechaHora());
+            ps.setInt(2, cita.getIdTipoCita());
+            ps.setInt(3, cita.getIdPaciente());
             int resultado = ps.executeUpdate();
             if (resultado == 0) {
                 mensaje = "Cero registros agregados";

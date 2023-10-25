@@ -6,6 +6,7 @@ public class TipoCita {
     private String nombre;
     private Double precio;
     private String descripcion;
+    private Psicologo psicologo;
 
     public TipoCita() {
     }
@@ -18,7 +19,14 @@ public class TipoCita {
         this.descripcion = descripcion;
     }
 
+    public Psicologo getPsicologo() {
+        return psicologo;
+    }
 
+    public void setPsicologo(Psicologo psicologo) {
+        this.psicologo = psicologo;
+    }
+    
 
     public int getIdTipoCita() {
         return idTipoCita;

@@ -8,7 +8,13 @@
 
 <body>
     <%@include file="WEB-INF/jspf/nav.jspf" %>
+    <%
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
+        if(session.getAttribute("user")==null){
+            response.sendRedirect("login.jsp");
+        }        
+    %>
 
      <!-- RESUMEN CITAS -->
 
@@ -24,32 +30,37 @@
 
                 <div class="resumen_contenedor_datos">
                     <div class="resumen_datos">
-                        <h3>Nombre de Paciente:</h3>
-                        <p>Paciente</p>
+                        <h3>Nombre de Paciente: </h3>
+                        <p> ${cita.paciente.nombre}</p>
                     </div>
 
                     <div class="resumen_datos">
-                        <h3>Fecha de Cita:</h3>
-                        <p>......</p>
+                        <h3>Fecha de Cita: </h3>
+                        <p> ${cita.fechaHora}</p>
                     </div>
 
                     <div class="resumen_datos">
-                        <h3>Tipo de Terapia:</h3>
-                        <p>Terapia 1</p>
+                        <h3>Tipo de Terapia: </h3>
+                        <p> ${cita.tipoCita.nombre}</p>
                     </div>
 
                     <div class="resumen_datos">
-                        <h3>Psicologo:</h3>
-                        <p>Psicologo 1</p>
+                        <h3>Psicologo: </h3>
+                        <p> ${cita.tipoCita.psicologo.nombre}</p>
                     </div>
 
                     <div class="resumen_datos">
-                        <h3>Total a Pagar:</h3>
-                        <p>S/....</p>
+                        <h3>Total a Pagar: </h3>
+                        <p> S/${cita.tipoCita.precio}</p>
                     </div>
                 </div>
-
-                <a class="boton_resumen" href="#">Confirmar Pago</a>
+                    <form action="Cita" method="POST">
+                        <input type="hidden" name="accion" value="REGCITA"/>
+                        <input type="hidden" name="fecha" value="${cita.fechaHora}"/>
+                        <input type="hidden" name="terapia" value="${cita.tipoCita.idTipoCita}"/>
+                        <input type="hidden" name="pacienteId" value="${cita.paciente.idPaciente}"/>
+                        <input type="submit" class="btn btn_editar" value="Confirmar Pago" />
+                    </form>                
             </div>
         </div>
     </section>

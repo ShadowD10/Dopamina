@@ -15,4 +15,5 @@ public interface DaoPaciente {
     String pacienteUpd(Paciente paciente); //UPDATE
     String pacienteDel(Integer id); //DELETE
     String getMensaje(); 
+    Integer pacienteGetNewId(Integer userId, String name); //SELECT * FROM WHERE
 }

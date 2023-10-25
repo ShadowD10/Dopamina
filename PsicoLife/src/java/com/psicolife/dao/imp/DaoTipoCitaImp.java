@@ -4,6 +4,7 @@
  */
 package com.psicolife.dao.imp;
 
+import com.psicolife.dao.interfaces.DaoPsicologo;
 import com.psicolife.dao.interfaces.DaoTipoCita;
 import com.psicolife.model.TipoCita;
 import com.psicolife.util.Conexion;
@@ -26,13 +27,14 @@ public class DaoTipoCitaImp implements DaoTipoCita {
     
     private final Conexion conn = new Conexion();
     private String mensaje;
+    private DaoPsicologo dao = new DaoPsicologoImp();
     
     @Override
     public List<TipoCita> tipoCitaSel() {
         List<TipoCita> tipoCitas = null;
         
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT id_tipoCita, nombre, precio, descripcion, id_psicologo")
+        sql.append("SELECT id_tipo_cita, nombre, precio, descripcion, id_psicologo")
                 .append(" FROM Tipo_Cita");
         
         try(Connection cn = conn.getConexion()){
@@ -46,6 +48,7 @@ public class DaoTipoCitaImp implements DaoTipoCita {
                 user.setPrecio(rs.getDouble(3));
                 user.setDescripcion(rs.getString(4));
                 user.setIdPsicologo(rs.getInt(5));
+                user.setPsicologo(dao.psicologoGet(user.getIdPsicologo()));
                 tipoCitas.add(user);
             }            
         } catch (SQLException ex) {
@@ -71,7 +74,8 @@ public class DaoTipoCitaImp implements DaoTipoCita {
                 user.setNombre(rs.getString(2));
                 user.setPrecio(rs.getDouble(3));
                 user.setDescripcion(rs.getString(4));
-                user.setIdPsicologo(rs.getInt(5));
+                user.setIdPsicologo(rs.getInt(5));                
+                user.setPsicologo(dao.psicologoGet(user.getIdPsicologo()));
             } else {
                 mensaje="TipoCita inexistente";
             }         
