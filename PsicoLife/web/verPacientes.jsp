@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
     </style>
 
     <body>
+        <%@include file="WEB-INF/jspf/validarCuentaAdmin.jspf" %>
 
 
         <!-- ADMINISTRADOR VER PACIENTES-->
@@ -20,17 +22,7 @@
         <!-- PACIENTES REGISTRADOS -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel panel_administrador">
-                <div class="panel_contenido">
-                    <a href="#" class="text-center fs-2">PSICO-LIFE</a>
-                    <a href="verUsuarios.jsp">Ver Usuarios</a>
-                    <a href="verPacientes.jsp">Ver Pacientes</a>
-                    <a href="verCitas.jsp">Ver Citas</a>
-                    <a href="registrarPsicologo.jsp">Registrar Psicologos</a>
-                    <a href="verPsicologos.jsp">Ver Psicologos</a>
-                    <a href="index.jsp">Cerrar Sesion</a>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelAdministrador.jspf" %>
 
             <div class="paciente_contenido">
                 <h1 class="titulo_paciente">Pacientes Registrados</h1>
@@ -39,44 +31,23 @@
                         <h2>Nombre Paciente</h2>
                         <h2>Edad</h2>
                         <h2>Parentezco</h2>
-                        <h2>Usuario a Cargo</h2>
-                    </div>
-
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                        <h2 class="card_elemento">27 años</h2>
-                        <h2 class="card_elemento">Hijo</h2>
-                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
-                    </div>
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                        <h2 class="card_elemento">27 años</h2>
-                        <h2 class="card_elemento">Hijo</h2>
-                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
-                    </div>
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                        <h2 class="card_elemento">27 años</h2>
-                        <h2 class="card_elemento">Hijo</h2>
-                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
-                    </div>
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                        <h2 class="card_elemento">27 años</h2>
-                        <h2 class="card_elemento">Hijo</h2>
-                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
-                    </div>
-                    <div class="card_paciente">
-                        <h2 class="card_elemento">Juan Carlos Osorio</h2>
-                        <h2 class="card_elemento">27 años</h2>
-                        <h2 class="card_elemento">Hijo</h2>
-                        <h2 class="card_elemento">Miguel Angel Dulanto</h2>
-                    </div>
-
-                   
-
+                        <h2>Paciente a Cargo</h2>
+                    </div>     
+ 
+                    <c:if test="${listaPacientes != null}">
+                        <c:forEach var="paciente" items="${listaPacientes}">
+                            <div class="card_paciente">
+                                <h2 class="card_elemento">${paciente.nombre}</h2>
+                                <h2 class="card_elemento">${paciente.edad}</h2>
+                                <h2 class="card_elemento">${paciente.parentesco}</h2>
+                                <h2 class="card_elemento">${paciente.usuario.username}</h2>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${mensaje!=null}">
+                        <p class="text-center">${mensaje}</p>
+                    </c:if> 
                 </div>
-
             </div>
         </section>
 

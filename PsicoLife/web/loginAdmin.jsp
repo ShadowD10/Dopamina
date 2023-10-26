@@ -18,30 +18,33 @@
                 </div>
 
                 <div class="col-md-6 right">
-                    <form method="POST">
+                    <form action="Usuario" method="POST">
+                        <input type="hidden" name="accion" value="ADMINLOGIN">
                         <div class="input-box">
                             <header>Iniciar Sesion como Administrador</header>
                             <div class="input-field">
                                 <input
                                     type="text"
                                     class="input"
-                                    id="usuario"
+                                    id="correo"
                                     required=""
                                     autocomplete="off"
+                                    name="correo"
                                     />
-                                <label for="usuario">Usuario</label>
+                                <label for="correo">Correo</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" id="pass" required="" />
+                                <input type="password" class="input" id="pass" name="contraseña" required="" />
                                 <label for="pass">Contraseña</label>
                             </div>
                             <div class="input-field">
                                 <input type="submit" class="submit" value="Ingresar" />
                             </div>
+                            <c:if test="${mensaje!=null}">
+                                <p class="text-center">${mensaje}</p>
+                            </c:if>
                             <div class="signin">
-                                <span
-                                    >VISTA ADMIN PRUEBA <a href="verPacientes.jsp">Ingresa aquí</a></span
-                                >
+                                
                             </div>
                         </div>
                     </form>

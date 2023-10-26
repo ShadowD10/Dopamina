@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+            <div class="panel">
+                <div class="panel_contenido">
+                    <a href="editarPerfil.jsp">Editar Perfil</a>
+                    <a href="Paciente?accion=LISTARUSR&userID=${user.idUsuario}">Pacientes</a>
+                    <a href="ConsultaCita?accion=LISTARUSR&userID=${user.idUsuario}">Historial de Citas</a>
+                    <a href="Usuario?accion=LOGOUT">Cerrar Sesion</a>
+                </div>
+            </div>

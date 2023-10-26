@@ -17,7 +17,7 @@
                     <div class="line my-4"></div>
                     <p>Ofrecemos un espacio seguro y confidencial donde las personas pueden explorar sus pensamientos, emociones y desafíos personales. Nuestro equipo de terapeutas altamente calificados trabaja en estrecha colaboración con cada paciente para desarrollar estrategias efectivas que promuevan la resiliencia y el crecimiento personal. </p>
                     <div class="botones_hero">
-                        <a href="formularioCitas.jsp" class="mbtn1 mt-4">Reservar Cita</a>
+                        <a href="Terapia?accion=REGCITA" class="mbtn1 mt-4">Reservar Cita</a>
                     </div>
                 </div>
             </div>

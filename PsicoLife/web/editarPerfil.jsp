@@ -7,55 +7,41 @@
 
 
     <body>
-        <%@include file="WEB-INF/jspf/navLogueado.jspf" %>
-
-
+        <%@include file="WEB-INF/jspf/nav.jspf" %>
+        <%@include file="WEB-INF/jspf/validarCuentaUsuario.jspf" %>
         <!-- EDITAR PERFIL -->
 
         <section class="editar_perfil contenedor">
-            <div class="panel">
-                <div class="panel_contenido">
-                    <a href="editarPerfil.jsp">Editar Perfil</a>
-                    <a href="pacientesUsuario.jsp">Pacientes</a>
-                    <a href="historial.jsp">Historial de Citas</a>
-                    <a href="index.jsp">Cerrar Sesion</a>
-                </div>
-            </div>
+            <%@include file="WEB-INF/jspf/panelUsuario.jspf" %>
 
             <div class="editar_perfil_contenido">
                 <h1 class="titulo_editar">Edite su Informacion</h1>
-                <form method="POST">
+                <form action="Usuario" method="POST">
+                    <input type="hidden" name="accion" value="UPD">
+                    <input type="hidden" name="userID" value="${user.idUsuario}">
                     <div class="editar_informacion">
-
                         <div class="inputs">
                             <label>Cambiar Usuario:</label>
-                            <input type="text" placeholder="Cambiar Usuario" />
+                            <input type="text" name="username" placeholder="${user.username}"  required="" value="${user.username}"/>
                         </div>
-
                         <div class="inputs">
                             <label>Cambiar Correo:</label>
-                            <input type="email" placeholder="Cambiar Correo" />
+                            <input type="email" name="correo" placeholder="${user.correo}" required="" value="${user.correo}"/>
                         </div>
-
                         <div class="inputs">
                             <label>Cambiar Telefono:</label>
-                            <input type="number" placeholder="Cambiar Telefono" />
+                            <input type="number" name="numeroCelular" placeholder="${user.numCelular}" required="" value="${user.numCelular}"/>
                         </div>
-
                         <div class="inputs">
                             <label>Cambiar Edad:</label>
-                            <input type="number" placeholder="Cambiar Edad" />
+                            <input type="number" name="edad" placeholder="${user.edad}" required="" value="${user.edad}"/>
                         </div>
-
-                        <div class="inputs">
-                            <label>Cambiar Contraseña:</label>
-                            <input type="password" placeholder="Cambiar Contraseña" />
-                        </div>
-
                         <input class="boton_gestor_usuario" type="submit" value="Actualizar">
+                        <c:if test="${mensaje!=null}">
+                            <p class="text-center">${mensaje}</p>
+                        </c:if>
                     </div>   
                 </form>
-
             </div>
         </section>
 

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    private final String URL = "jdbc:mysql://localhost:3306/ventas";
+    private final String URL = "jdbc:mysql://127.0.0.1:3306/admin_pscolife?zeroDateTimeBehavior=CONVERT_TO_NULL ";
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String USER = "root";
-    private final String PASS = "admin";
+    private final String USER = "admin_pscolife";
+    private final String PASS = "Psicolife23.";
 
     public Connection getConexion() throws SQLException {
         Connection c = null;

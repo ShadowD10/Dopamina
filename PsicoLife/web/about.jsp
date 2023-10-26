@@ -21,7 +21,7 @@
                         contigo para desarrollar estrategias que fomenten la resiliencia y el crecimiento personal en tu búsqueda de una vida más saludable y significativa."</p>
 
                     <div class="botones_hero">
-                        <a href="formularioCitas.jsp" class="mbtn1 mt-4">Reservar</a>
+                        <a href="Terapia?accion=REGCITA" class="mbtn1 mt-4">Reservar</a>
                     </div>
                 </div>
             </div>

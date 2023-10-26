@@ -23,7 +23,7 @@
                     </p>
 
                     <div class="botones_hero">
-                        <a href="formularioCitas.jsp" class="mbtn1 mt-4">Reservar Cita</a>
+                        <a href="Terapia?accion=REGCITA" class="mbtn1 mt-4">Reservar Cita</a>
                         <a href="servicios.jsp" class="mbtn2 mt-4">Terapias</a>
                     </div>
 
@@ -48,7 +48,7 @@
                         contigo para desarrollar estrategias que fomenten la resiliencia y el crecimiento personal en tu búsqueda de una vida más saludable y significativa."</p>
 
                     <div class="botones_hero">
-                        <a href="formularioCitas.jsp" class="mbtn1 mt-4">Reservar Cita</a>
+                        <a href="Terapia?accion=REGCITA" class="mbtn1 mt-4">Reservar Cita</a>
                     </div>
                 </div>
             </div>
