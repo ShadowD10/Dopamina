@@ -7,6 +7,7 @@ package com.psicolife.web.validators;
 import com.psicolife.dao.imp.DaoUsuarioImp;
 import com.psicolife.dao.interfaces.DaoUsuario;
 import com.psicolife.model.Usuario;
+import com.psicolife.util.Regex;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -17,10 +18,12 @@ import java.util.List;
 public class UsuarioValidator {
     private DaoUsuario dao;
     private HttpServletRequest request;
+    private Regex regex;
     
     public UsuarioValidator(HttpServletRequest request){
         this.dao = new DaoUsuarioImp();
         this.request = request;
+        this.regex = new Regex();
     }
     
     public String usuarioSel(){
@@ -57,36 +60,76 @@ public class UsuarioValidator {
     public String usuarioSet() {
         String result = null;
         
-            Usuario user = new Usuario();
-            user.setUsername(request.getParameter("username"));
-            user.setCorreo(request.getParameter("correo"));
-            user.setNumCelular(request.getParameter("numeroCelular"));
-            user.setEdad(Integer.valueOf(request.getParameter("edad")));
-            user.setContraseña(request.getParameter("contraseña"));
-            
-            result = dao.usuarioSet(user);
-            
+        String numeroCelular = request.getParameter("numeroCelular");
+        String correo = request.getParameter("correo");
+        int edad = Integer.valueOf(request.getParameter("edad"));
+        Usuario test = dao.comprobarUser(correo);
+        
+        if ( edad >= 5 && edad < 100){
+            if(regex.revisarNumero(numeroCelular)){
+                if(regex.revisarCorreo(correo)){
+                    if(test == null){
+
+                        Usuario user = new Usuario();
+                        user.setUsername(request.getParameter("username"));
+                        user.setCorreo(correo);
+                        user.setNumCelular(numeroCelular);
+                        user.setEdad(edad);
+                        user.setContraseña(request.getParameter("contraseña"));
+
+                        result = dao.usuarioSet(user);
+
+                    } else {
+                        result = "Ya existe un usuario con este correo electronico.";
+                    }
+                } else {
+                    result = "Direccion de correo electronico inválida.";
+                }
+            } else {
+                result = "Numero celular inválido.";
+            }
+        } else {
+            result = "Verifique la edad ingresada.";
+        }
         return result;
     }
     
     public String usuarioUpd(){
         String result = null;
         
-            Usuario user = new Usuario();
-            user.setUsername(request.getParameter("username"));
-            user.setCorreo(request.getParameter("correo"));
-            user.setNumCelular(request.getParameter("numeroCelular"));
-            user.setEdad(Integer.parseInt(request.getParameter("edad")));
-            user.setIdUsuario(Integer.parseInt(request.getParameter("userID")));
+        String numeroCelular = request.getParameter("numeroCelular");
+        String correo = request.getParameter("correo");
+        int edad = Integer.valueOf(request.getParameter("edad"));
+        
+        if ( edad >= 5 && edad < 100){
+            if(regex.revisarNumero(numeroCelular)){
+                if(regex.revisarCorreo(correo)){
+
+                        Usuario user = new Usuario();
+                        user.setUsername(request.getParameter("username"));
+                        user.setCorreo(correo);
+                        user.setNumCelular(numeroCelular);
+                        user.setEdad(edad);
+                        user.setIdUsuario(Integer.parseInt(request.getParameter("userID")));
+                        
+                        result = dao.usuarioUpd(user);
             
-            result = dao.usuarioUpd(user);
-            
-            if(result == null){
-                request.getSession().invalidate();
-                request.getSession().setAttribute("user", user);
+                        if(result == null){
+                            request.getSession().invalidate();
+                            request.getSession().setAttribute("user", user);
+                        }
+
+                        result = (result == null) ? "Usuario modificado exitosamente." : result;
+
+                } else {
+                    result = "Direccion de correo electronico inválida.";
+                }
+            } else {
+                result = "Numero celular inválido.";
             }
-            
-            result = (result == null) ? "Usuario modificado exitosamente." : result;
+        } else {
+            result = "Verifique la edad ingresada.";
+        }       
                     
         return result;
     }
@@ -149,5 +192,5 @@ public class UsuarioValidator {
         
         return result;
     }
-
+    
 }

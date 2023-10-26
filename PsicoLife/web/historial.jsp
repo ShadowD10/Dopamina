@@ -29,6 +29,7 @@
                         </tr>
                         <c:if test="${listaCitas != null}">
                             <c:forEach var="cita" items="${listaCitas}">
+                                <c:if test="${cita.fechaHora!=null}">
                                 <tr>
                                     <td>${cita.nombrePaciente}</td>
                                     <td>${cita.fechaHora}</td>
@@ -36,6 +37,7 @@
                                     <td>${cita.nombrePsicologo}</td>
                                     <td>${cita.precio}</td>
                                 </tr>
+                                </c:if>
                             </c:forEach>
                         </c:if>
                         <c:if test="${mensaje != null}">

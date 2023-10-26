@@ -66,8 +66,9 @@ public class CitaValidator {
         paciente.setParentesco(request.getParameter("parentescoPaciente"));
         paciente.setIdUsuario(Integer.valueOf(request.getParameter("userID")));
         
-        result = pacienteDao.pacienteSet(paciente);
-        
+        if(pacienteDao.pacienteGet(pacienteDao.pacienteGetNewId(paciente.getIdUsuario(), paciente.getNombre())).getNombre()==null){
+            result = pacienteDao.pacienteSet(paciente);
+        }
         String inputDate = request.getParameter("fecha");
         
         // Define un formateador para la fecha de entrada

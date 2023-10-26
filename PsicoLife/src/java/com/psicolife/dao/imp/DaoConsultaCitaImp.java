@@ -67,7 +67,8 @@ public class DaoConsultaCitaImp implements DaoConsultaCita {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            consultas = new ArrayList();
+            while(rs.next()){
                 ConsultaCita consultaCita = new ConsultaCita();
                 consultaCita.setIdPaciente(rs.getInt(1));
                 consultaCita.setNombrePaciente(rs.getString(2));
@@ -76,9 +77,7 @@ public class DaoConsultaCitaImp implements DaoConsultaCita {
                 consultaCita.setNombrePsicologo(rs.getString(5));
                 consultaCita.setPrecio(rs.getDouble(6));
                 consultas.add(consultaCita);
-            } else {
-                mensaje = "No hay registro";
-            }
+            } 
         }catch (Exception e){
             mensaje=e.getMessage();
         }

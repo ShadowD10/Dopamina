@@ -180,5 +180,30 @@ public class DaoUsuarioImp implements DaoUsuario {
         }        
         return usuario;
     }
+
+    @Override
+    public Usuario comprobarUser(String correo) {
+        Usuario usuario = null;     
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT id_usuario, username, correo, num_celular, edad FROM Usuario " +
+                    "WHERE correo = ?;");        
+        try ( Connection cn = conn.getConexion()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setString(1, correo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setUsername(rs.getString(2));
+                usuario.setCorreo(rs.getString(3));
+                usuario.setNumCelular(rs.getString(4));
+                usuario.setEdad(rs.getInt(5));
+            }   
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }        
+        return usuario;
+        
+    }
     
 }

@@ -50,7 +50,7 @@ public class ConsultaCitaServlet extends HttpServlet {
                 break;
             case "LISTARUSR":
 
-                mensaje = validador.listarCitas();
+                mensaje = validador.listarCitasUser();
 
                 target = "historial.jsp";
 

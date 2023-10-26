@@ -61,6 +61,7 @@ public class DaoPacienteImp implements DaoPaciente {
     @Override
     @SuppressWarnings("null")
     public Paciente pacienteGet(Integer id) {
+        id = (id == null) ?  0 : id; 
         Paciente user = new Paciente();        
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT id_paciente, nombre, parentezco, edad, id_usuario")
@@ -76,9 +77,7 @@ public class DaoPacienteImp implements DaoPaciente {
                 user.setEdad(rs.getInt(4));
                 user.setIdUsuario(rs.getInt(5));
                 user.setUsuario(dao.usuarioGet(user.getIdUsuario()));
-            } else {
-                mensaje="Paciente inexistente";
-            }         
+            }   
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }        
@@ -201,9 +200,7 @@ public class DaoPacienteImp implements DaoPaciente {
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 pacienteId = rs.getInt(1);                
-            } else {
-                mensaje="Paciente inexistente";
-            }         
+            }       
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }        

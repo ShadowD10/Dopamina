@@ -45,8 +45,12 @@ public class CitaServlet extends HttpServlet {
             case "GENCITA":
                 
                 mensaje = validador.generarCita();
-                target = "resumenTerapia.jsp";
                 
+                if (mensaje == null){
+                    target = "resumenTerapia.jsp";
+                } else {
+                    target = "Terapia?accion=REGCITA";
+                }
                 break;
             case "REGCITA":
                 

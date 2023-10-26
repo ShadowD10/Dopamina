@@ -9,12 +9,8 @@
     <%@include file="WEB-INF/jspf/nav.jspf" %>
 
     <div class="wrapper">
+
         <div class="container main">
-        <c:if test="${mensaje != null}">
-            <div class="alert alert-warning">
-            ${mensaje}
-            </div>
-        </c:if>
             <div class="row">
                 <div class="col-md-6 side-image">
                     <div class="text">
@@ -57,17 +53,25 @@
                             </div>
                             <div class="input-field">
                                 <input type="submit" class="submit" value="Ingresar" />
+                           
                             </div>
                         </form>
                         <div class="signin">
                             <span
                                 >¿Ya tienes una cuenta? <a href="login.jsp">Ingresa aquí</a></span
-                            >
+                            >                            
+                        <c:if test="${mensaje != null}">
+                            <p class="text-center">
+                                ${mensaje}
+                            </p>
+                        </c:if>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 
 </body>

@@ -27,7 +27,11 @@
             </div>
             <div class="resumen_contenido">
                 <p class="text-center"><h2>${mensaje}</h2></p>
+                <div class="input-field">
+                    <a href="index.jsp" class="boton_resumen">Inicio</a>
+                </div>     
             </div>
+       
         </div>
     </section>
 

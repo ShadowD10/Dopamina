@@ -18,5 +18,6 @@ public interface DaoUsuario {
     String usuarioUpd(Usuario usuario); //UPDATE
     String usuarioDel(Integer id); //DELETE
     Usuario UsuarioLog(Usuario usuario); //SELECT * FROM WHERE contraseña = c AND usuario = u
+    Usuario comprobarUser(String correo);
     String getMensaje();   
 }
